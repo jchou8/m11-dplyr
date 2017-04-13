@@ -10,6 +10,8 @@ devtools::install_github("hadley/fueleconomy")
 require('fueleconomy')
 
 # You should have have access to the `vehicles` data.frame
+View(vehicles)
+
 # Create a data.frame of vehicles from 1997
 vehicles.1997 <- vehicles[vehicles$year == 1997, ]
 
@@ -17,7 +19,7 @@ vehicles.1997 <- vehicles[vehicles$year == 1997, ]
 only.one.year <- length(unique(vehicles.1997$year)) == 1
 
 # Create a data.frame of 2-Wheel Drive vehicles that get more than 20 miles/gallon in the city
-vehicles.2wd <- vehicles[vehicles$cty > 20 & !grepl("4-Wheel", vehicles$drive), ]
+vehicles.2wd <- vehicles[vehicles$cty > 20 & vehicles$drive == '2-Wheel Drive', ]
 
 # Of those vehicles, what is the vehicle ID of the vehicle with the worst hwy mpg?
 worst.hwy <- vehicles.2wd$id[vehicles.2wd$hwy == min(vehicles.2wd$hwy)]
