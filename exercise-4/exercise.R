@@ -32,7 +32,7 @@ library(dplyr)
 ### Bonus ###
 # Write a function that allows you to specify an origin, a destination, and a column of interest
 # that returns a data.frame of flights from the origin to the destination and only the column of interest
-## Hint: see slides on standard evaluation
+## Hint: see chapter 11 section on standard evaluation
 
 
 # Retireve the air_time column for flights from JFK to SEA
