@@ -7,38 +7,41 @@ library(dplyr)
 
 # The data.frame flights should now be accessible to you.  View it, 
 # and get some basic information about the number of rows/columns
-
+View(flights)
+nrow(flights)
+ncol(flights)
 
 # Add a column that is the amount of time gained in the air (`arr_delay` - `dep_delay`)
-
+flights <- mutate(flights, air_gain = arr_delay - dep_delay)
 
 # Sort your data.frame desceding by the column you just created
-
+flights <- arrange(flights, desc(air_gain))
 
 # Try doing the last 2 steps in a single operation using the pipe operator
-
+flights <- mutate(flights, air_gain = arr_delay - dep_delay) %>% arrange(desc(air_gain))
 
 # Make a histogram of the amount of gain using the `hist` command
-
+hist(flights$air_gain)
 
 # On average, did flights gain or lose time?
-
+average.gain <- mean(flights$air_gain, na.rm = TRUE)
 
 # Create a data.frame that is of flights headed to seatac ('SEA'), 
-
+sea.flights <- filter(flights, dest == "SEA")
 
 # On average, did flights to seatac gain or loose time?
+sea.average <- mean(sea.flights$air_gain, na.rm = TRUE)
 
 ### Bonus ###
 # Write a function that allows you to specify an origin, a destination, and a column of interest
 # that returns a data.frame of flights from the origin to the destination and only the column of interest
 ## Hint: see chapter 11 section on standard evaluation
-
+FlightFilter <- function(my.origin, my.dest, column) {
+  return (filter(flights, my.origin == origin, my.dest == dest) %>% select_(column))
+}
 
 # Retireve the air_time column for flights from JFK to SEA
+jfk.sea.airtime <- FlightFilter("JFK", "SEA", "air_time")
 
-
-# What was the average air time of those flights (in hours)?  
-
-
-# What was the min/max average air time for the JFK to SEA flights?
+# What was the min/max/average air time for the JFK to SEA flights (in hours)?
+jfk.sea.stats <- summarize(jfk.sea.airtime, max = max(air_time, na.rm = TRUE)/60, min = min(air_time, na.rm = TRUE)/60, ave = mean(air_time, na.rm = TRUE)/60)
