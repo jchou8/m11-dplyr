@@ -20,7 +20,8 @@ library(dplyr)
 # Did any value type surprise you? Why do you think they are that type?
 
 
-# Add a column that contains the diffrence in changes in Daily Circulation from 2004 to 2013
+# Add a column in a dataframe called 'Pulitzer.Prize.Change` that contains the diffrence in changes
+# in Pulitzer Prize Winners from 2004 to 2013 and Pultizer Prize Winners from 1990 to 2003.
 
 
 # What publication gained the most pulitzer prizes from 2004-2014?
